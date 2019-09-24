@@ -103,25 +103,23 @@
                 <!-- Navigation -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="admin_dashboard.html">
+                        <a class="nav-link" href="upt_dashboard.html">
                             <i class="ni ni-single-02 text-dark"></i> Beranda
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="admin_data_admin_user.html">
-                            <i class="ni ni-single-02 text-dark"></i> User
+                        <a class="nav-link active" href="upt_peminjaman.html">
+                            <i class="ni ni-single-02 text-dark"></i> Peminjaman
                         </a>
                     </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="upt_history.html">
+                                <i class="ni ni-single-02 text-dark"></i> History
+                            </a>
+                        </li>
                 </ul>
                 <!-- Divider -->
                 <hr class="my-3">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin_data_role.html">
-                            <i class="ni ni-single-02 text-dark"></i> Role
-                        </a>
-                    </li>
-                </ul>
             </div>
         </div>
     </nav>
@@ -186,39 +184,34 @@
                         <div class="card-header bg-white border-0">
                             <div class="row align-items-center">
                                 <div class="col-lg-7">
-                                    <h3 class="mb-0">Data User</h3>
-                                </div>
-
-                                <div class="col-lg-3 text-right">
-                                    <input type="text" placeholder="Cari User ..." class="form-control form-control-alternative form-control-sm">
-                                </div>
-                                <div class="col-lg-2">
-                                    <button class="btn btn-sm btn-primary mt-sm-2" data-toggle="modal" data-target="#tambah">Tambah User</button>
+                                    <h3 class="mb-0">Data Peminjaman</h3>
                                 </div>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
+                            <table class="table align-items-center table-sm table-flush">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">NIP</th>
-                                        <th scope="col">NAMA LENGKAP</th>
-                                        <th scope="col">ROLE</th>
-                                        <th scope="col">STATUS</th>
-                                        <th scope="col" class="text-center">ACTION</th>
+                                        <th scope="col">Nama Peminjaman</th>
+                                        <th scope="col">Tanggal</th>
+                                        <th scope="col">Ruangan</th>
+                                        <th scope="col">Jam</th>
+                                        <th scope="col">Keperluan</th>
+                                        <th scope="col" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td scope="row">1</td>
-                                        <td scope="row">0110215041</td>
                                         <td scope="row">Dzaki M</td>
-                                        <td scope="row">Super Admin</td>
-                                        <td scope="row">Active</td>
+                                        <td scope="row">2019-20-01</td>
+                                        <td scope="row">B - 201</td>
+                                        <td scope="row">09.00 - 10.00</td>
+                                        <td scope="row">Testing Aja</td>
                                         <td scope="row" class="text-center">
-                                            <button type="button" class="btn btn-sm btn-secondary">Edit</button>
-                                            <button type="button" class="btn btn-sm btn-danger">Hapus</button>
+                                            <button type="button" class="btn btn-sm btn-success">Accept</button>
+                                            <button type="button" class="btn btn-sm btn-danger">Decline</button>
                                         </td>
                                     </tr>
                                 </tbody>
