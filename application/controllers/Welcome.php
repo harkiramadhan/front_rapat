@@ -20,10 +20,25 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->model('M_Ruang');
-		$this->load->model('M_Jam');
-		$get = $this->M_Ruang->get_Alljenisruang()->result();
-		$jam = $this->M_Jam->get_Alljam()->result();
-		print_r($jam);
+		$this->load->model('M_User');
+		$username 	= "hady18059si";
+		$password 	= '0110118059';
+		$options = [
+			'cost' => 12,
+		];
+		$hash		= hash($password);
+		echo "Bcrypt : $hash";
+		echo "<br>";
+		echo 'Hash : $2y$12$Nn/iT6/TQzAwae0u8C4weelj9HaJVc5KrQaOH7A6sD2klLxRFKQx.';
+
+		// $get		= $this->M_User->cek_user($username, $hash);
+		// print_r($get->result());
+		// echo $hash;
+
+		// $getAll = $this->M_User->get_Alluser()->result();
+		// print_r($getAll);
+
+		// $mhs = $this->db->get('mahasiswa')->result();
+		// print_r($mhs);
 	}
 }
