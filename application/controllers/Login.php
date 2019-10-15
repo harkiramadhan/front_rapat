@@ -22,19 +22,19 @@ class Login extends CI_Controller{
             $this->session->set_userdata('masuk', TRUE);
             if($user['role'] == 1){
                 $this->session->set_userdata('role', 1);
-                $this->session->set_userdata('username', $data['username']);
+                $this->session->set_userdata('username', $user['username']);
                 
                 redirect('dashboard');
                 
             }elseif($user['role'] == 2){
                 $this->session->set_userdata('role', 2);
-                $this->session->set_userdata('username', $data['username']);
+                $this->session->set_userdata('username', $user['username']);
 
                 redirect('dashboard');
                 
             }elseif($user['role'] == 3){
                 $this->session->set_userdata('role', 3);
-                $this->session->set_userdata('username', $data['username']);
+                $this->session->set_userdata('username', $user['username']);
 
                 redirect('dashboard');
                 
@@ -44,6 +44,13 @@ class Login extends CI_Controller{
             $this->session->set_flashdata('msg',"Username Atau Password Salah");
             redirect('login');
         }
+    }
+
+    // Fungsi Logout
+    function logout(){
+        $this->session->sess_destroy();
+        $url=base_url('');
+        redirect($url);
     }
 
     // Fungsi Autentikasi Login Mahasiswa
