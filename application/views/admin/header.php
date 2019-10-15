@@ -35,6 +35,7 @@
 
     <!-- Datatables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/w/bs4/dt-1.10.18/sc-2.0.0/datatables.min.css"/>
+    
 </head>
 
 <body>

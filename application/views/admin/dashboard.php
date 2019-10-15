@@ -58,6 +58,7 @@
                                                 <th>Keperluan</th>
                                                 <th>Kontak</th>
                                                 <th>Status</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                     </table>
@@ -66,6 +67,14 @@
                         </div>
                         
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                <div class="isi">
+                
                 </div>
             </div>
         </div>

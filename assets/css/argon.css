@@ -21877,6 +21877,23 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
     word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
+.dataTables_scrollHead{
+    width: 100% !important;
+}
+.dataTables_scrollHeadInner{
+    width: 100% !important;
+}
+.dataTable.no-footer{
+    width: 100% !important;
+}
+.dataTables_filter{
+    padding-right: 25pt !important;
+}
+.dataTables_info{
+    padding-left: 25pt !important;
+    font-size: .8125rem !important;
+}
+
 @media (max-width: 576px)
 {
     .wrap-table-argon {
