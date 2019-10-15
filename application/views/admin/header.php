@@ -32,6 +32,9 @@
     <link href="<?= base_url('') ?>/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <!-- Argon CSS -->
     <link type="text/css" href="<?= base_url('') ?>/assets/css/argon.css?v=1.1.0" rel="stylesheet">
+
+    <!-- Datatables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/w/bs4/dt-1.10.18/sc-2.0.0/datatables.min.css"/>
 </head>
 
 <body>

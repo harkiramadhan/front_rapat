@@ -12,36 +12,31 @@ class Login extends CI_Controller{
     // Fungsi Autentikasi Login Admin / UPT / KMS 
     function auth(){
         $username   = $this->input->post('username', TRUE);
-        $password   = md5($this->input->post('password', TRUE));
+        $password   = $this->input->post('password', TRUE);
 
         $cek        = $this->M_User->cek_user($username, $password);
-
+        
         if($cek->num_rows() > 0){
             $user = $cek->row_array();
-            
-            $this->session->set_userdata('masuk', TRUE);
-            if($user['role'] == 1){
-                $this->session->set_userdata('role', 1);
-                $this->session->set_userdata('username', $user['username']);
-                
-                redirect('dashboard');
-                
-            }elseif($user['role'] == 2){
-                $this->session->set_userdata('role', 2);
-                $this->session->set_userdata('username', $user['username']);
 
-                redirect('dashboard');
-                
-            }elseif($user['role'] == 3){
-                $this->session->set_userdata('role', 3);
-                $this->session->set_userdata('username', $user['username']);
+            if($user['id_user'] == NULL && $user['id_role'] == NULL && $user['nik'] == ""){
+                $this->session->set_flashdata('msg',"User Tidak Terdaftar");
+                redirect('login');
+            }else{
+                if($user['status'] == "active"){
+                    
+                    $this->session->set_userdata('masuk', TRUE);
+                    $this->session->set_userdata('role', $user['id_role']);
+                    $this->session->set_userdata('username', $user['username']);
+                    redirect('dashboard');
 
-                redirect('dashboard');
-                
+                }else{
+                    $this->session->set_flashdata('msg',"User Tidak Aktif");
+                    redirect('login');
+                }
             }
-
         }else{
-            $this->session->set_flashdata('msg',"Username Atau Password Salah");
+            $this->session->set_flashdata('msg',"User Tidak Terdaftar");
             redirect('login');
         }
     }
