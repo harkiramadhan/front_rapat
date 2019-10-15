@@ -50,9 +50,9 @@
                             </div>
                             <div class="col-6 collapse-close">
                                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
-                  <span></span>
-                  <span></span>
-                </button>
+                                <span></span>
+                                <span></span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -96,6 +96,9 @@
                                 <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
                                     <div class="container">
                                         <form role="form" action ="<?= site_url('login/auth') ?>" method="POST">
+                                            <div class="col-xl-12 text-center">
+                                                <h5 class="text-danger text-center"> <b><?= $this->session->flashdata('msg'); ?></b> </h5>
+                                            </div>
                                             <div class="form-group-lg mb-3">
                                                 <div class="input-group input-group-alternative">
                                                     <div class="input-group-prepend">
@@ -121,6 +124,9 @@
                                 <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
                                     <div class="container">
                                         <form role="form" action="<?= site_url('login/authmahasiswa') ?>" method="POST">
+                                            <div class="col-xl-12 text-center">
+                                                <h5 class="text-danger text-center"> <b><?= $this->session->flashdata('msg'); ?></b> </h5>
+                                            </div>
                                             <div class="form-group-lg mb-3">
                                                 <div class="input-group input-group-alternative">
                                                     <div class="input-group-prepend">
