@@ -28,7 +28,15 @@ class Dashboard extends CI_Controller{
         }
         // Cek User Role BAAK
         elseif($role == 2){
+            $data['jum_user']       = $this->M_User->get_userPeminjaman()->num_rows();
+            $data['jum_peminjaman'] = 10;
+            $data['jum_disetujui']  = 10;
+            $data['jum_ditolak']    = 10;
+            $data['jum_pending']    = 10;
 
+            $this->load->view('baak/header', $data);
+            $this->load->view('baak/dashboard', $data);
+            $this->load->view('baak/footer');
         }
         // Cek User Role Kemahasiswaan
         elseif($role == 3){
@@ -42,37 +50,51 @@ class Dashboard extends CI_Controller{
 
     function table_peminjaman(){
         $role = $this->session->userdata('role');
-        if($role == 1){
-            $draw = intval($this->input->get("draw"));
-            $start = intval($this->input->get("start"));
-            $length = intval($this->input->get("length"));
 
-            $get = $this->M_Peminjaman->get_All();
+        $draw = intval($this->input->get("draw"));
+        $start = intval($this->input->get("start"));
+        $length = intval($this->input->get("length"));
 
-            $data   = array();
-            $no     = 1;
-            $url    = site_url('dashboard/modal');
+        $get = $this->M_Peminjaman->get_All();
 
-            foreach($get->result() as $row){
-                $btn = "
-                    <button onclick='hapus{$row->id}()' class='btn btn-sm btn-danger'><i class='fas fa-trash'></i>&nbsp;Hapus</button>
+        $data   = array();
+        $no     = 1;
+        $url    = site_url('dashboard/modal');
 
-                    <script>
-                    function hapus{$row->id}(){
-                        var id = {$row->id};
-                        var jenis = 'delete';
-                        $.ajax({
-                        url: '{$url}',
-                        type: 'post',
-                        data: {id : id, jenis : jenis},
-                        success: function(response){ 
-                            $('#hapus').modal('show'); 
-                            $('.isi').html(response);
-                        }
-                        });
+        foreach($get->result() as $row){
+            if($role == 1){
+            $btn = "
+                <button onclick='hapus{$row->id}()' class='btn btn-sm btn-danger'><i class='fas fa-trash'></i>&nbsp;Hapus</button>
+
+                <script>
+                function hapus{$row->id}(){
+                    var id = {$row->id};
+                    var jenis = 'delete';
+                    $.ajax({
+                    url: '{$url}',
+                    type: 'post',
+                    data: {id : id, jenis : jenis},
+                    success: function(response){ 
+                        $('#hapus').modal('show'); 
+                        $('.isi').html(response);
                     }
-                    </script>
-                ";
+                    });
+                }
+                </script>
+            ";
+            $data[] = [
+                $no++,
+                $row->username,
+                $row->tanggal,
+                "$row->mulai - $row->selesai",
+                $row->kode,
+                $row->keperluan,
+                $row->keterangan,
+                $row->kontak,
+                $row->status,
+                $btn
+            ];
+            }else{
                 $data[] = [
                     $no++,
                     $row->username,
@@ -80,22 +102,22 @@ class Dashboard extends CI_Controller{
                     "$row->mulai - $row->selesai",
                     $row->kode,
                     $row->keperluan,
+                    $row->keterangan,
                     $row->kontak,
-                    $row->status,
-                    $btn
+                    $row->status
                 ];
             }
-
-            $output = [
-                "draw"              => $draw,
-                "recordsTotal"      => $get->num_rows(),
-                "recordsFiltered"   => $get->num_rows(),
-                "data"              => $data
-            ];
-
-            echo json_encode($output);
-            exit();
         }
+
+        $output = [
+            "draw"              => $draw,
+            "recordsTotal"      => $get->num_rows(),
+            "recordsFiltered"   => $get->num_rows(),
+            "data"              => $data
+        ];
+
+        echo json_encode($output);
+        exit();
     }
 
     function modal(){
