@@ -30,17 +30,37 @@ class User extends CI_Controller{
 
         if($role == 1){
             $jenis = $this->input->post('jenis', TRUE);
+            $id = $this->input->post('id', TRUE);
 
             if($jenis == "create"){
-                $data = [
-                    'username'  => $this->input->post('username', TRUE),
-                    'password'  => md5($this->input->post('password', TRUE)),
-                    'id_role'   => $this->input->post('id_role', TRUE),
-                    'status'    => $this->input->post('status', TRUE),
-                ];
-                $this->db->insert('user_peminjaman', $data);
+                $create = $this->M_User->create();
 
-                redirect($_SERVER['HTTP_REFERER']);
+                if($create){
+                    $this->session->set_flashdata('sukses','User Berhasil Di Buat');
+                    redirect($_SERVER['HTTP_REFERER']);
+                }else{
+                    $this->session->set_flashdata('error','User Gagal Di Buat');
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
+
+            }elseif($jenis == "delete"){
+                $delete = $this->M_User->delete($id);
+                if($delete){
+                    $this->session->set_flashdata('sukses','User Berhasil Di Hapus');
+                    redirect($_SERVER['HTTP_REFERER']);
+                }else{
+                    $this->session->set_flashdata('error','User Gagal Di Hapus');
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
+            }elseif($jenis == "edit"){
+                $edit = $this->M_User->edit($id);
+                if($edit){
+                    $this->session->set_flashdata('sukses','User Berhasil Di Edit');
+                    redirect($_SERVER['HTTP_REFERER']);
+                }else{
+                    $this->session->set_flashdata('error','User Gagal Di Edit');
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
             }
 
         }

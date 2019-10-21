@@ -113,6 +113,26 @@
     <div class="main-content">
         <!-- Top navbar -->
         <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+            <?php 
+            $data=$this->session->flashdata('sukses');
+            if($data!=""){?>
+            <div class="sticky-top col-md-12 alert">
+                <div class="alert alert-success" role="alert">
+                    <span class="alert-inner--icon"><i class="ni ni-notification-70"></i></span>
+                    <span class="alert-inner--text"><strong> &nbsp Sukses! </strong><?=$data;?></span>
+                </div>
+            </div>
+            <?php } ?>
+            <?php 
+            $data2=$this->session->flashdata('error');
+            if($data2!=""){?>
+            <div class="sticky-top col-md-12 alert">
+                <div class="alert alert-warning" role="alert">
+                    <span class="alert-inner--icon"><i class="ni ni-notification-70"></i></span>
+                    <span class="alert-inner--text"><strong> &nbsp Error! </strong><?=$data2;?></span>
+                </div>
+            </div>
+            <?php } ?>
             <div class="container-fluid">
                 <!-- User -->
                 <ul class="navbar-nav align-items-center d-none d-md-flex ml-auto">

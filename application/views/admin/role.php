@@ -16,13 +16,6 @@
                                 <div class="col-lg-7">
                                     <h3 class="mb-0">Data Role</h3>
                                 </div>
-
-                                <div class="col-lg-3 text-right">
-                                    
-                                </div>
-                                <div class="col-lg-2">
-                                    <button class="btn btn-sm btn-primary mt-sm-2" data-toggle="modal" data-target="#tambah">Tambah Role</button>
-                                </div>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -31,7 +24,6 @@
                                     <tr>
                                         <th scope="col">ID</th>
                                         <th scope="col" class="text-left">Role</th>
-                                        <th scope="col" class="text-center">ACTION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,10 +31,6 @@
                                     <tr>
                                         <th scope="row"><?= $row->id ?></th>
                                         <td scope="row" class="text-left"><?= $row->role ?></td>
-                                        <td scope="row" class="text-center">
-                                            <button type="button" class="btn btn-sm btn-secondary">Edit</button>
-                                            <button type="button" class="btn btn-sm btn-danger">Hapus</button>
-                                        </td>
                                     </tr>
                                     <?php } ?>
                                 </tbody>
