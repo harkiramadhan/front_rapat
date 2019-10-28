@@ -3,6 +3,8 @@ class Peminjaman extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('M_Peminjaman');
+        $this->load->model('M_Jam');
+        $this->load->model('M_Ruang');
         if($this->session->userdata('masuk') != TRUE){
             $url = base_url('');
             redirect($url);
@@ -12,6 +14,14 @@ class Peminjaman extends CI_Controller{
     function index(){
         $role = $this->session->userdata('role');
         $data['username'] = $this->session->userdata('username');
+        $data['jam'] = $this->M_Jam->get_Alljam()->result();
+        $data['ruang'] = $this->M_Ruang->get_Allruang()->result();
+        
+        if($this->input->get('date', TRUE) == TRUE){
+            $data['tanggal'] = $this->input->get('date', TRUE);
+        }else{
+            $data['tanggal'] = date('Y-m-d');
+        }
 
         // Jika BAAK
         if($role == 2){
