@@ -28,7 +28,6 @@ class Dashboard extends CI_Controller{
         }
         // Cek User Role BAAK
         elseif($role == 2){
-            $data['jum_user']       = $this->M_User->get_userPeminjaman()->num_rows();
             $data['jum_peminjaman'] = 10;
             $data['jum_disetujui']  = 10;
             $data['jum_ditolak']    = 10;

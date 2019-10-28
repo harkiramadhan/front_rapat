@@ -92,8 +92,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if($this->uri->segment(1) == "user"){echo "active";} ?>" href="<?= site_url('user') ?>">
-                            <i class="ni ni-single-02 text-dark"></i> User
+                        <a class="nav-link <?php if($this->uri->segment(1) == "peminjaman"){echo "active";} ?>" href="<?= site_url('peminjaman') ?>">
+                            <i class="ni ni-single-02 text-dark"></i> Peminjaman
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if($this->uri->segment(1) == "history"){echo "active";} ?>" href="<?= site_url('history') ?>">
+                            <i class="ni ni-single-02 text-dark"></i> History
                         </a>
                     </li>
                 </ul>
@@ -101,8 +106,8 @@
                 <hr class="my-3">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link <?php if($this->uri->segment(1) == "role"){echo "active";} ?>" href="<?= site_url('role') ?>">
-                            <i class="ni ni-single-02 text-dark"></i> Role
+                        <a class="nav-link" href="<?= site_url('login/logout') ?>">
+                            <i class="ni ni-spaceship text-dark"></i> Logout
                         </a>
                     </li>
                 </ul>
