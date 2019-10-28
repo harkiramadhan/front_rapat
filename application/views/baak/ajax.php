@@ -26,4 +26,18 @@
     });
 </script>
 
+<?php elseif($this->uri->segment(1) == "history"): ?>
+<script>
+    $(document).ready(function(){
+        $('#table_peminjaman').dataTable({
+            ajax:           '<?php echo site_url('history/table') ?>',
+            scrollY:        400,
+            deferRender:    true,
+            scroller:       true,
+            searching:      true,
+            info:           false,
+        });
+    });
+</script>
+
 <?php endif; ?>

@@ -18,7 +18,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table align-items-center table-sm table-flush">
+                            <table class="table align-items-center table-sm table-flush" id="table_peminjaman">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
@@ -28,24 +28,9 @@
                                         <th scope="col">Jam</th>
                                         <th scope="col">Keperluan</th>
                                         <th scope="col">WA</th>
-                                        <th scope="col" class="text-center">Action</th>
+                                        <th scope="col">Status</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td scope="row">1</td>
-                                        <td scope="row">Dzaki M</td>
-                                        <td scope="row">2019-20-01</td>
-                                        <td scope="row">B - 201</td>
-                                        <td scope="row">09.00 - 10.00</td>
-                                        <td scope="row">Testing Aja</td>
-                                        <td scope="row">08788123456</td>
-                                        <td scope="row" class="text-center">
-                                            <button type="button" class="btn btn-sm btn-success">Accept</button>
-                                            <button type="button" class="btn btn-sm btn-danger">Decline</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
                             </table>
                         </div>
                     </div>
