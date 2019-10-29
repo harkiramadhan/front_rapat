@@ -104,7 +104,7 @@ class Dashboard extends CI_Controller{
                 $row->keperluan,
                 $row->keterangan,
                 $row->kontak,
-                $row->status,
+                "$row->status $row->keterangan",
                 $btn
             ];
             }else{
@@ -117,7 +117,7 @@ class Dashboard extends CI_Controller{
                     $row->keperluan,
                     $row->keterangan,
                     $row->kontak,
-                    $row->status
+                    "$row->status $row->keterangan"
                 ];
             }
         }
