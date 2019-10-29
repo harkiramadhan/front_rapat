@@ -15,10 +15,17 @@ class History extends CI_Controller{
 
         // Cek Role BAAK 
         if($role == 2){
-
             $this->load->view('baak/header', $data);
             $this->load->view('baak/history', $data);
             $this->load->view('baak/footer');
+        }elseif($role == 3){
+            $this->load->view('kms/header', $data);
+            $this->load->view('kms/history', $data);
+            $this->load->view('kms/footer');
+        }elseif($role == 4){
+            $this->load->view('upt/header', $data);
+            $this->load->view('upt/history', $data);
+            $this->load->view('upt/footer');
         }
     }
 
@@ -29,23 +36,58 @@ class History extends CI_Controller{
         $start = intval($this->input->get("start"));
         $length = intval($this->input->get("length"));
 
-        $get = $this->M_Peminjaman->get_baakhistory();
+        if($role == 2){
+            $get = $this->M_Peminjaman->get_baakhistory();
+        }elseif($role == 3){
+            $get = $this->M_Peminjaman->get_kmshistory();
+        }elseif($role == 4){
+            $get = $this->M_Peminjaman->get_upthistory();
+        }
+        
 
         $data = array();
         $no = 1;
 
         foreach($get->result() as $row){
-            if($row->status_baak == "accepted"){
-                $status = "<span class='badge badge-dot mr-4'>
-                                <i class='bg-success'></i>
-                                <span class='status'>Accepted</span>
-                            </span>";
-            }else{
-                $status = "<span class='badge badge-dot mr-4'>
-                                <i class='bg-danger'></i>
-                                <span class='status'>Declined</span>
-                            </span>";
+
+            if($role == 2){
+                if($row->status_baak == "accepted"){
+                    $status = "<span class='badge badge-dot mr-4'>
+                                    <i class='bg-success'></i>
+                                    <span class='status'>Accepted</span>
+                                </span>";
+                }else{
+                    $status = "<span class='badge badge-dot mr-4'>
+                                    <i class='bg-danger'></i>
+                                    <span class='status'>Declined</span>
+                                </span>";
+                }
+            }elseif($role == 3){
+                if($row->status == "accepted"){
+                    $status = "<span class='badge badge-dot mr-4'>
+                                    <i class='bg-success'></i>
+                                    <span class='status'>Accepted</span>
+                                </span>";
+                }else{
+                    $status = "<span class='badge badge-dot mr-4'>
+                                    <i class='bg-danger'></i>
+                                    <span class='status'>Declined</span>
+                                </span>";
+                }
+            }elseif($role == 4){
+                if($row->status == "accepted"){
+                    $status = "<span class='badge badge-dot mr-4'>
+                                    <i class='bg-success'></i>
+                                    <span class='status'>Accepted</span>
+                                </span>";
+                }else{
+                    $status = "<span class='badge badge-dot mr-4'>
+                                    <i class='bg-danger'></i>
+                                    <span class='status'>Declined</span>
+                                </span>";
+                }
             }
+            
             $data[] = [
                 $no++,
                 $row->username,

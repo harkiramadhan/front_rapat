@@ -31,6 +31,14 @@ class Peminjaman extends CI_Controller{
             $this->load->view('baak/header', $data);
             $this->load->view('baak/peminjaman', $data);
             $this->load->view('baak/footer');
+        }elseif($role == 3){
+            $this->load->view('kms/header', $data);
+            $this->load->view('kms/peminjaman', $data);
+            $this->load->view('kms/footer');
+        }elseif($role == 4){
+            $this->load->view('upt/header', $data);
+            $this->load->view('upt/peminjaman', $data);
+            $this->load->view('upt/footer');
         }
     }
 
@@ -41,14 +49,19 @@ class Peminjaman extends CI_Controller{
         $start = intval($this->input->get("start"));
         $length = intval($this->input->get("length"));
 
-        $get = $this->M_Peminjaman->get_baaknoaction();
+        if($role == 2){
+            $get = $this->M_Peminjaman->get_baaknoaction();
+        }elseif($role == 3){
+            $get = $this->M_Peminjaman->get_kmsnoaction();
+        }elseif($role == 4){
+            $get = $this->M_Peminjaman->get_uptnoaction();
+        }
 
         $data = array();
         $no = 1;
         $url = site_url('peminjaman/modal');
 
         foreach($get->result() as $row){
-            if($role == 2){
                 $btn = "
                 <button onclick='decline{$row->id}()' class='btn btn-sm btn-danger'>Decline</button>
                 <button onclick='acc{$row->id}()' class='btn btn-sm btn-primary'>Accept</button>
@@ -94,7 +107,6 @@ class Peminjaman extends CI_Controller{
                     $row->status_baak,
                     $btn
                 ];
-            }
         }
 
         $output = [
@@ -113,8 +125,6 @@ class Peminjaman extends CI_Controller{
         $id = $this->input->post('id', TRUE);
         $jenis = $this->input->post('jenis', TRUE);
         $peminjaman = $this->M_Peminjaman->get_selected($id)->row();
-
-        if($role == 2){
             ?>
                 <form>
                     <div class="modal-content <?php if($jenis == "decline"){echo "bg-gradient-danger";}else{echo "bg-gradient-success";} ?>">
@@ -176,7 +186,6 @@ class Peminjaman extends CI_Controller{
                     });
                 </script>
             <?php
-        }
     }
 
     function action(){
@@ -211,6 +220,36 @@ class Peminjaman extends CI_Controller{
                     echo "Peminjaman Gagal Di Accept";
                 }
             } 
-        }  
+        }elseif($role == 3 || $role == 4){
+            if($jenis == "decline"){
+                $data = [
+                    'status' => "declined",
+                    'status_baak' => "declined"
+                ];
+
+                $this->db->where('id', $id);
+                $this->db->update('peminjaman_ruang', $data);
+
+                if($this->db->affected_rows() > 0){
+                    echo "Peminjaman Berhasil Di Decline";
+                }else{
+                    echo "Peminjaman Gagal Di Decline";
+                }
+            }else{
+                $data = [
+                    'status' => "accepted",
+                    'status_baak' => "pending"
+                ];
+
+                $this->db->where('id', $id);
+                $this->db->update('peminjaman_ruang', $data);
+
+                if($this->db->affected_rows() > 0){
+                    echo "Peminjaman Berhasil Di Accept";
+                }else{
+                    echo "Peminjaman Gagal Di Accept";
+                }
+            }
+        } 
     }
 }

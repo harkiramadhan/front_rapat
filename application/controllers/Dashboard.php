@@ -39,11 +39,25 @@ class Dashboard extends CI_Controller{
         }
         // Cek User Role Kemahasiswaan
         elseif($role == 3){
+            $data['jum_peminjaman'] = 10;
+            $data['jum_disetujui']  = 10;
+            $data['jum_ditolak']    = 10;
+            $data['jum_pending']    = 10;
 
+            $this->load->view('kms/header', $data);
+            $this->load->view('kms/dashboard', $data);
+            $this->load->view('kms/footer');
         }
         // Cek User Role UPT
         elseif($role == 4){
-            
+            $data['jum_peminjaman'] = 10;
+            $data['jum_disetujui']  = 10;
+            $data['jum_ditolak']    = 10;
+            $data['jum_pending']    = 10;
+
+            $this->load->view('upt/header', $data);
+            $this->load->view('upt/dashboard', $data);
+            $this->load->view('upt/footer');
         }
     }
 
