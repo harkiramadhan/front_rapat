@@ -95,10 +95,15 @@ class History extends CI_Controller{
                                     <i class='bg-success'></i>
                                     <span class='status text-capitalize'>Accepted $row->keterangan</span>
                                 </span>";
-                }else{
+                }elseif($row->status == "declined"){
                     $status = "<span class='badge badge-dot mr-4'>
                                     <i class='bg-danger'></i>
                                     <span class='status text-capitalize'>Declined $row->keterangan</span>
+                                </span>";
+                }elseif($row->status == "pending"){
+                    $status = "<span class='badge badge-dot mr-4'>
+                                    <i class='bg-primary'></i>
+                                    <span class='status text-capitalize'>Pending $row->keterangan</span>
                                 </span>";
                 }
 
@@ -107,10 +112,15 @@ class History extends CI_Controller{
                                     <i class='bg-success'></i>
                                     <span class='status'>Accepted</span>
                                 </span>";
-                }else{
+                }elseif($row->status_baak == "declined"){
                     $status_baak = "<span class='badge badge-dot mr-4'>
                                     <i class='bg-danger'></i>
                                     <span class='status'>Declined</span>
+                                </span>";
+                }elseif($row->status_baak == "pending"){
+                    $status_baak = "<span class='badge badge-dot mr-4'>
+                                    <i class='bg-primary'></i>
+                                    <span class='status text-capitalize'>Pending</span>
                                 </span>";
                 }
             }
@@ -129,12 +139,10 @@ class History extends CI_Controller{
             }else{
                 $data[] = [
                     $no++,
-                    $row->username,
                     $row->tanggal,
                     $row->kode,
                     "$row->mulai - $row->selesai",
                     $row->keperluan,
-                    $row->kontak,
                     $status,
                     $status_baak
                 ];

@@ -40,6 +40,8 @@ class Peminjaman extends CI_Controller{
             $this->load->view('upt/peminjaman', $data);
             $this->load->view('upt/footer');
         }elseif($role == "mahasiswa"){
+            $data['ruang'] = $this->M_Ruang->get_Allruang()->result();
+            $data['jam'] = $this->M_Jam->get_Alljam()->result();
             $this->load->view('mhs/header', $data);
             $this->load->view('mhs/peminjaman', $data);
             $this->load->view('mhs/footer');
@@ -254,6 +256,32 @@ class Peminjaman extends CI_Controller{
                     echo "Peminjaman Gagal Di Accept";
                 }
             }
-        } 
+        }elseif($role == "mahasiswa"){
+            if($jenis == "ajukan"){
+                $idmhs = $this->session->userdata('idmhs');
+                $idruang = explode("_", $this->input->post('id_ruang', TRUE));
+                $ruang = $idruang[0];
+                if($idruang[1] != "Lab Komputer"){
+                    $keterangan = "kemahasiswaan";
+                }else{
+                    $keterangan = "upt";
+                }
+
+                $data = [
+                    'peminjam' => $idmhs,
+                    'tanggal' => $this->input->post('tanggal', TRUE),
+                    'id_ruang' => $ruang,
+                    'keterangan' => $keterangan,
+                    'jam_awal'  => $this->input->post('jam_awal', TRUE),
+                    'jam_akhir' => $this->input->post('jam_akhir', TRUE),
+                    'kontak' => $this->input->post('kontak', TRUE),
+                    'keperluan' => $this->input->post('keperluan', TRUE),
+                    'status' => "pending",
+                    'status_baak' => "pending"
+                ];
+                $this->db->insert('peminjaman_ruang', $data);
+                redirect($_SERVER['HTTP_REFERER']);
+            }
+        }
     }
 }
