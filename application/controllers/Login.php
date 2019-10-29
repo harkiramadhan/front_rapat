@@ -45,10 +45,21 @@ class Login extends CI_Controller{
     // Fungsi Autentikasi Login Mahasiswa
     function authmahasiswa(){
         $username   = $this->input->post('username', TRUE);
-        $password   = md5($this->input->post('password', TRUE));
+        $password   = $this->input->post('password', TRUE);
 
-        echo $username;
-        echo $password;
+        $cek = $this->M_User->cek_usermhs($username, $password);
+
+        if($cek->num_rows() > 0){
+            $user = $cek->row_array();
+            $this->session->set_userdata('masuk', TRUE);
+            $this->session->set_userdata('username', $user['username']);
+            $this->session->set_userdata('idmhs', $user['mhsid']);
+            $this->session->set_userdata('role','mahasiswa');
+            redirect('dashboard');
+        }else{
+            $this->session->set_flashdata('msg',"Mahasiswa Tidak Terdaftar");
+            redirect('login');
+        }
     }
 
     // Fungsi Index Register Mahasiswa

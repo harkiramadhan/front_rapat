@@ -9,6 +9,15 @@ class M_User extends CI_Model{
         return $this->db->get();
     }
 
+    // Cek User Mahasiswa
+    function cek_usermhs($username, $password){
+        $this->db->select('user.username, mahasiswa.nim, mahasiswa.mhsid');
+        $this->db->from('mahasiswa');
+        $this->db->join('user', 'mahasiswa.user_id = user.id');
+        $this->db->where(['mahasiswa.nim'=>$password, 'user.username'=>$username]);
+        return $this->db->get();
+    }
+
     // User Aplikasi
     function get_userPeminjaman(){
         $this->db->select('user_peminjaman.*, role.role');

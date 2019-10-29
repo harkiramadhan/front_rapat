@@ -42,6 +42,9 @@ class History extends CI_Controller{
             $get = $this->M_Peminjaman->get_kmshistory();
         }elseif($role == 4){
             $get = $this->M_Peminjaman->get_upthistory();
+        }elseif($role == "mahasiswa"){
+            $idmhs = $this->session->userdata('idmhs');
+            $get = $this->M_Peminjaman->get_peminjamanmahasiswa($idmhs);
         }
         
 
@@ -86,18 +89,56 @@ class History extends CI_Controller{
                                     <span class='status'>Declined</span>
                                 </span>";
                 }
+            }elseif($role == "mahasiswa"){
+                if($row->status == "accepted"){
+                    $status = "<span class='badge badge-dot mr-4'>
+                                    <i class='bg-success'></i>
+                                    <span class='status text-capitalize'>Accepted $row->keterangan</span>
+                                </span>";
+                }else{
+                    $status = "<span class='badge badge-dot mr-4'>
+                                    <i class='bg-danger'></i>
+                                    <span class='status text-capitalize'>Declined $row->keterangan</span>
+                                </span>";
+                }
+
+                if($row->status_baak == "accepted"){
+                    $status_baak = "<span class='badge badge-dot mr-4'>
+                                    <i class='bg-success'></i>
+                                    <span class='status'>Accepted</span>
+                                </span>";
+                }else{
+                    $status_baak = "<span class='badge badge-dot mr-4'>
+                                    <i class='bg-danger'></i>
+                                    <span class='status'>Declined</span>
+                                </span>";
+                }
             }
             
-            $data[] = [
-                $no++,
-                $row->username,
-                $row->tanggal,
-                $row->kode,
-                "$row->mulai - $row->selesai",
-                $row->keperluan,
-                $row->kontak,
-                $status
-            ];
+            if($role != "mahasiswa"){
+                $data[] = [
+                    $no++,
+                    $row->username,
+                    $row->tanggal,
+                    $row->kode,
+                    "$row->mulai - $row->selesai",
+                    $row->keperluan,
+                    $row->kontak,
+                    $status
+                ];
+            }else{
+                $data[] = [
+                    $no++,
+                    $row->username,
+                    $row->tanggal,
+                    $row->kode,
+                    "$row->mulai - $row->selesai",
+                    $row->keperluan,
+                    $row->kontak,
+                    $status,
+                    $status_baak
+                ];
+            }
         }
 
         $output = [

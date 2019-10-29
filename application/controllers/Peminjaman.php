@@ -39,6 +39,10 @@ class Peminjaman extends CI_Controller{
             $this->load->view('upt/header', $data);
             $this->load->view('upt/peminjaman', $data);
             $this->load->view('upt/footer');
+        }elseif($role == "mahasiswa"){
+            $this->load->view('mhs/header', $data);
+            $this->load->view('mhs/peminjaman', $data);
+            $this->load->view('mhs/footer');
         }
     }
 

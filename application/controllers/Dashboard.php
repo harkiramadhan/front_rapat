@@ -4,6 +4,8 @@ class Dashboard extends CI_Controller{
         parent::__construct();
         $this->load->model('M_User');
         $this->load->model('M_Peminjaman');
+        $this->load->model('M_Jam');
+        $this->load->model('M_Ruang');
         if($this->session->userdata('masuk') != TRUE){
             $url = base_url();
             redirect($url);
@@ -13,14 +15,17 @@ class Dashboard extends CI_Controller{
     function index(){
         $role = $this->session->userdata('role');
         $data['username'] = $this->session->userdata('username');
-        
-        // Cek User Role Admin
-        if($role == 1){
-            $data['jum_user']       = $this->M_User->get_userPeminjaman()->num_rows();
+
+        if($role != "mahasiswa"){
             $data['jum_peminjaman'] = 10;
             $data['jum_disetujui']  = 10;
             $data['jum_ditolak']    = 10;
             $data['jum_pending']    = 10;
+        }
+        
+        // Cek User Role Admin
+        if($role == 1){
+            $data['jum_user']       = $this->M_User->get_userPeminjaman()->num_rows();
 
             $this->load->view('admin/header', $data);
             $this->load->view('admin/dashboard', $data);
@@ -28,36 +33,35 @@ class Dashboard extends CI_Controller{
         }
         // Cek User Role BAAK
         elseif($role == 2){
-            $data['jum_peminjaman'] = 10;
-            $data['jum_disetujui']  = 10;
-            $data['jum_ditolak']    = 10;
-            $data['jum_pending']    = 10;
-
             $this->load->view('baak/header', $data);
             $this->load->view('baak/dashboard', $data);
             $this->load->view('baak/footer');
         }
         // Cek User Role Kemahasiswaan
         elseif($role == 3){
-            $data['jum_peminjaman'] = 10;
-            $data['jum_disetujui']  = 10;
-            $data['jum_ditolak']    = 10;
-            $data['jum_pending']    = 10;
-
             $this->load->view('kms/header', $data);
             $this->load->view('kms/dashboard', $data);
             $this->load->view('kms/footer');
         }
         // Cek User Role UPT
         elseif($role == 4){
-            $data['jum_peminjaman'] = 10;
-            $data['jum_disetujui']  = 10;
-            $data['jum_ditolak']    = 10;
-            $data['jum_pending']    = 10;
-
             $this->load->view('upt/header', $data);
             $this->load->view('upt/dashboard', $data);
             $this->load->view('upt/footer');
+        }
+
+        elseif($role == "mahasiswa"){
+            if($this->input->get('date', TRUE) == TRUE){
+                $data['tanggal'] = $this->input->get('date', TRUE);
+            }else{
+                $data['tanggal'] = date('Y-m-d');
+            }
+            $data['jam'] = $this->M_Jam->get_Alljam()->result();
+            $data['ruang'] = $this->M_Ruang->get_Allruang()->result();
+
+            $this->load->view('mhs/header', $data);
+            $this->load->view('mhs/dashboard', $data);
+            $this->load->view('mhs/footer');
         }
     }
 
