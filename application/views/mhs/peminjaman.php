@@ -42,7 +42,7 @@
 <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-secondary">
                 <h3 class="modal-title" id="exampleModalLabel">Tambah Peminjaman</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -104,7 +104,7 @@
                 </div>
                 <input type="hidden" name="jenis" value="ajukan">
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer bg-secondary">
                 <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Batal</button>
                 <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
             </div>
