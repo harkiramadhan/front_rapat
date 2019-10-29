@@ -9,6 +9,7 @@ class M_Ruang extends CI_Model{
     function get_Allruang(){
         $this->db->select('ruang.*, jenis_ruang.nama');
         $this->db->from('ruang');
+        $this->db->order_by('kode','ASC');
         $this->db->join('jenis_ruang', 'ruang.jenis_ruang_id = jenis_ruang.id');
         return $this->db->get();
     }

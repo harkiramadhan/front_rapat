@@ -23,6 +23,9 @@ class Peminjaman extends CI_Controller{
             $data['tanggal'] = date('Y-m-d');
         }
 
+        $data['awal'] = $this->db->get_where('peminjaman_ruang', ['tanggal'=>$data['tanggal']])->result();
+        $data['akhir'] = $this->db->get_where('peminjaman_ruang', ['tanggal'=>$data['tanggal']])->result();
+
         // Jika BAAK
         if($role == 2){
             $this->load->view('baak/header', $data);
