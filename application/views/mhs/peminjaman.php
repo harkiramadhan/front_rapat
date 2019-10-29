@@ -65,23 +65,30 @@
                             <label>Tanggal</label>
                             <input type="date" class="form-control-sm form-control-alternative form-control" name="tanggal" >
                         </div>
-                        <div class="form-group">
-                            <label>Jam Mulai</label>
-                            <select class="form-control form-control-alternative form-control-sm" name="jam_awal">
-                                <option value="">- Pilih Jam Mulai -</option>
-                                <?php foreach($jam as $jm){ ?>
-                                    <option value="<?= $jm->id ?>"><?= $jm->mulai ." - ". $jm->akhir?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Jam Selesai</label>
-                            <select class="form-control form-control-alternative form-control-sm" name="jam_akhir">
-                                <option value="">- Pilih Jam Selesai -</option>
-                                <?php foreach($jam as $j){ ?>
-                                    <option value="<?= $j->id ?>"><?= $j->mulai ." - ". $j->akhir?></option>
-                                <?php } ?>
-                            </select>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Jam Mulai</label>
+                                    <select class="form-control form-control-alternative form-control-sm" name="jam_awal">
+                                        <option value="">- Pilih Jam Mulai -</option>
+                                        <?php foreach($jam as $jm){ ?>
+                                            <option value="<?= $jm->id ?>"><?= $jm->mulai ." - ". $jm->akhir?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Jam Selesai</label>
+                                    <select class="form-control form-control-alternative form-control-sm" name="jam_akhir">
+                                        <option value="">- Pilih Jam Selesai -</option>
+                                        <?php foreach($jam as $j){ ?>
+                                            <option value="<?= $j->id ?>"><?= $j->mulai ." - ". $j->akhir?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
