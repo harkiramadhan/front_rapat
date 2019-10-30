@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 10.10 (Ubuntu 10.10-1.pgdg18.04+1)
--- Dumped by pg_dump version 11.5 (Ubuntu 11.5-3.pgdg18.04+1)
+-- Dumped by pg_dump version 10.10 (Ubuntu 10.10-1.pgdg18.04+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -15,6 +15,20 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
 
 --
 -- Name: agama; Type: TYPE; Schema: public; Owner: postgres
@@ -577,7 +591,8 @@ CREATE TABLE public.peminjaman_ruang (
     kontak character varying,
     status character varying,
     keterangan character varying,
-    "timestamp" character varying
+    "timestamp" character varying,
+    status_baak character varying
 );
 
 
@@ -1282,8 +1297,9 @@ Lina Guslina	P		\N			lina@nurulfikri.co.id	Islam		237	2018-09-16 10:49:57.194495
 -- Data for Name: peminjaman_ruang; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.peminjaman_ruang (id, peminjam, tanggal, id_ruang, jam_awal, jam_akhir, keperluan, kontak, status, keterangan, "timestamp") FROM stdin;
-3	97	2020-08-01	10	3	5	Testing	087888583949	pending	test	\N
+COPY public.peminjaman_ruang (id, peminjam, tanggal, id_ruang, jam_awal, jam_akhir, keperluan, kontak, status, keterangan, "timestamp", status_baak) FROM stdin;
+12	153	2019-10-29	10001	1	2	sadasdsad	087888583949	accepted	kemahasiswaan	\N	accepted
+13	153	2019-10-29	8	3	5	asdsadsad	34232432	accepted	upt	\N	accepted
 \.
 
 
@@ -1776,7 +1792,8 @@ COPY public."user" (id, username, email, password_hash, auth_key, confirmed_at, 
 COPY public.user_peminjaman (id, username, id_role, status, password) FROM stdin;
 2	admin	1	active	202cb962ac59075b964b07152d234b70
 4	baak	2	active	202cb962ac59075b964b07152d234b70
-6	root	1	active	5f4dcc3b5aa765d61d8327deb882cf99
+9	kms	3	active	202cb962ac59075b964b07152d234b70
+10	upt	4	active	202cb962ac59075b964b07152d234b70
 \.
 
 
@@ -1854,7 +1871,7 @@ SELECT pg_catalog.setval('public.pegawai_id_seq', 59, true);
 -- Name: peminjaman_ruang_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.peminjaman_ruang_id_seq', 3, true);
+SELECT pg_catalog.setval('public.peminjaman_ruang_id_seq', 13, true);
 
 
 --
@@ -1896,7 +1913,7 @@ SELECT pg_catalog.setval('public.user_id_seq', 263, true);
 -- Name: user_peminjaman_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.user_peminjaman_id_seq', 6, true);
+SELECT pg_catalog.setval('public.user_peminjaman_id_seq', 10, true);
 
 
 --
