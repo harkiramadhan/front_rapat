@@ -122,7 +122,7 @@
             $data=$this->session->flashdata('sukses');
             if($data!=""){?>
             <div class="sticky-top col-md-12 alert">
-                <div class="alert alert-success" role="alert">
+                <div class="alert bg-success text-white" role="alert">
                     <span class="alert-inner--icon"><i class="ni ni-notification-70"></i></span>
                     <span class="alert-inner--text"><strong> &nbsp Sukses! </strong><?=$data;?></span>
                 </div>
@@ -132,7 +132,7 @@
             $data2=$this->session->flashdata('error');
             if($data2!=""){?>
             <div class="sticky-top col-md-12 alert">
-                <div class="alert alert-warning" role="alert">
+                <div class="alert alert-warning text-white" role="alert">
                     <span class="alert-inner--icon"><i class="ni ni-notification-70"></i></span>
                     <span class="alert-inner--text"><strong> &nbsp Error! </strong><?=$data2;?></span>
                 </div>
